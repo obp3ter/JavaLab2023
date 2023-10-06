@@ -14,7 +14,7 @@ public class NotenProzessor {
         int[] finaleNoten = new int[0];
 
         for (int i = 0; i < note.length; i++) {
-            if (round(note[i]) >= 40) {
+            if (round(note[i]) < 40) {
                 finaleNoten = addToArray(finaleNoten, round(note[i]));
             }
         }

@@ -1,7 +1,5 @@
 package com.example.test;
 
-import java.util.ArrayList;
-
 import com.example.main.NotenProzessor;
 
 class NotenProzessorTest {
