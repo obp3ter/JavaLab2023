@@ -15,7 +15,7 @@ class NotenProzessorTest {
         int[] result = notenProzessor.addToArray(noten, newElement);
 
         assert noten[0] == result[0] : SHOULD_BE_EQUAL;
-        assert noten[2] == result[1] : SHOULD_BE_EQUAL;
+        assert noten[2] == result[1] : SHOULD_BE_EQUAL;//Assertion error example
         assert noten[2] == result[2] : SHOULD_BE_EQUAL;
         assert result[3] == newElement : SHOULD_BE_EQUAL;
 
