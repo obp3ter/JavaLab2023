@@ -9,4 +9,4 @@ Für `assert` du brauchst vm argument `-ea`
 
 ### Nützliche Links 
 
-[spring initializer](https://start.spring.io/#!type=maven-project&language=java&platformVersion=3.1.5&packaging=jar&jvmVersion=21&groupId=map.project&artifactId=demo&name=demo&description=Demo%20project%20for%20Spring%20Boot&packageName=map.project.demo)
+[spring initializer](https://start.spring.io/#!type=maven-project&language=java&platformVersion=3.1.5&packaging=jar&jvmVersion=21&groupId=map.project&artifactId=demo&name=demo&description=Demo%20project%20for%20Spring%20Boot&packageName=map.project.demo&dependencies=data-jpa,spring-shell,lombok,h2)
