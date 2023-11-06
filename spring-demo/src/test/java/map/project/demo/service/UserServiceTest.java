@@ -28,24 +28,24 @@ public class UserServiceTest {
 
     @Test
     public void saveUser() {
-        userService.save("me");
+        String name = "me";
 
-        verify(userRepository).save(any(User.class));
+        userService.save(name);
+
+        ArgumentCaptor<User> userArgumentCaptor = ArgumentCaptor.forClass(User.class);
+        verify(userRepository).save(userArgumentCaptor.capture());
+        assertThat(userArgumentCaptor.getValue().getName()).isEqualTo(name);
     }
 
     @Test
     public void saveUserDuplicateName() {
         when(userRepository.findByName(any(String.class))).thenReturn(Collections.singletonList(mock(User.class)));
 
-        String name = "me";
-        assertThatThrownBy((() -> userService.save(name)))
+        assertThatThrownBy((() -> userService.save("me")))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("User already exists");
 
-        ArgumentCaptor<User> userArgumentCaptor = ArgumentCaptor.forClass(User.class);
-
-        verify(userRepository, never()).save(userArgumentCaptor.capture());
-        assertThat(userArgumentCaptor.getValue().getName()).isEqualTo(name);
+        verify(userRepository, never()).save(any(User.class));
     }
 
     @Test
