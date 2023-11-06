@@ -7,11 +7,13 @@ import map.project.demo.data.repository.UserRepository;
 import map.project.demo.util.Validators;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockedStatic;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
@@ -35,11 +37,15 @@ public class UserServiceTest {
     public void saveUserDuplicateName() {
         when(userRepository.findByName(any(String.class))).thenReturn(Collections.singletonList(mock(User.class)));
 
-        assertThatThrownBy((() -> userService.save("me")))
+        String name = "me";
+        assertThatThrownBy((() -> userService.save(name)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("User already exists");
 
-        verify(userRepository, never()).save(any(User.class));
+        ArgumentCaptor<User> userArgumentCaptor = ArgumentCaptor.forClass(User.class);
+
+        verify(userRepository, never()).save(userArgumentCaptor.capture());
+        assertThat(userArgumentCaptor.getValue().getName()).isEqualTo(name);
     }
 
     @Test
