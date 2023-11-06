@@ -2,7 +2,7 @@ package map.project.demo.data.repository;
 
 import java.util.List;
 
-import map.project.demo.data.repository.model.User;
+import map.project.demo.data.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

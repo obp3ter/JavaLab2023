@@ -12,14 +12,13 @@ public class PostCLICommands {
     @Autowired
     private PostService postService;
 
-    @ShellMethod
+    @ShellMethod(key = "add post", value = "Add a post")
     public String addPost(@ShellOption(value = { "author" }, help = "Author of the post") final String author,
             @ShellOption(value = { "content" }, help = "Content of the post") final String content) {
-        postService.addPostBy(content, author);
-        return "Post added";
+        return postService.addPostBy(author, content).toString();
     }
 
-    @ShellMethod
+    @ShellMethod(key = "list post", value = "List all posts")
     public String listPosts() {
         return postService.findAll().toString();
     }

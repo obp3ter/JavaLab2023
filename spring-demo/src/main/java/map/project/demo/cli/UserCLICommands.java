@@ -1,6 +1,5 @@
 package map.project.demo.cli;
 
-import map.project.demo.data.repository.model.User;
 import map.project.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.shell.standard.ShellComponent;
@@ -13,19 +12,17 @@ public class UserCLICommands {
     @Autowired
     private UserService userService;
 
-    @ShellMethod(key = "list", value = "List all users")
+    @ShellMethod(key = "list user", value = "List all users")
     public String listUsers() {
         return userService.findAll().toString();
     }
 
-    @ShellMethod(key = "add", value = "Add a user")
+    @ShellMethod(key = "add user", value = "Add a user")
     public String addUser(@ShellOption(value = { "name" }, help = "Name of the user") final String name) {
-        User user = new User();
-        user.setName(name);
-        return userService.save(user).toString();
+        return userService.save(name).toString();
     }
 
-    @ShellMethod(key = "find", value = "Find a user")
+    @ShellMethod(key = "find user", value = "Find a user")
     public String findUser(@ShellOption(value = { "name" }, help = "Name of the user") final String name) {
         return userService.findByName(name).toString();
     }
