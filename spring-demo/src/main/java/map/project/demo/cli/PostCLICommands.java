@@ -22,4 +22,11 @@ public class PostCLICommands {
     public String listPosts() {
         return postService.findAll().toString();
     }
+
+    @ShellMethod(key = "add comment", value = "Add a comment")
+    public String addComment(@ShellOption(value = { "author" }, help = "Author of the comment") final String author,
+            @ShellOption(value = { "content" }, help = "Content of the comment") final String content,
+            @ShellOption(value = { "postid" }, help = "Post id of the comment") final Long postId) {
+        return postService.addCommentToPost(author, content, postId).toString();
+    }
 }

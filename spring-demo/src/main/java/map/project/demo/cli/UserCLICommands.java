@@ -31,4 +31,16 @@ public class UserCLICommands {
     public String findUserLike(@ShellOption(value = { "name" }, help = "Name of the user") final String name) {
         return userService.findByNameContaining(name).toString();
     }
+
+    @ShellMethod(key = "add bio", value = "Add a bio")
+    public String addBio(@ShellOption(value = { "name" }, help = "Name of the user") final String name,
+            @ShellOption(value = { "bio" }, help = "Bio of the user") final String bio) {
+        return userService.addBio(name, bio).toString();
+    }
+
+    @ShellMethod(key = "add friend", value = "Add a friend")
+    public String addFriend(@ShellOption(value = { "name" }, help = "Name of the user") final String name,
+            @ShellOption(value = { "friend" }, help = "Name of the friend") final String friend) {
+        return userService.addFriend(name, friend).toString();
+    }
 }

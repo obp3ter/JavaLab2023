@@ -3,6 +3,7 @@ package map.project.demo.service;
 import java.util.List;
 
 import jakarta.transaction.Transactional;
+import map.project.demo.data.model.Comment;
 import map.project.demo.data.model.Post;
 import map.project.demo.data.model.User;
 import map.project.demo.data.repository.PostRepository;
@@ -29,6 +30,16 @@ public class PostService {
             throw new IllegalArgumentException("User not found");
         }
         return postRepository.save(post);
+    }
+
+    public Post addCommentToPost(String author, String content, Long postId) {
+        Post post = postRepository.findById(postId).orElseThrow(()->new IllegalArgumentException("Post not found"));
+            Comment comment = new Comment();
+            comment.setAuthor(userService.findByName(author));
+            comment.setContent(content);
+            comment.setPost(post);
+            post.getComments().add(comment);
+            return postRepository.save(post);
     }
 
     public List<Post> findAll() {
