@@ -16,3 +16,7 @@ Für `assert` du brauchst vm argument `-ea`
 [![Baeldung](https://www.baeldung.com/wp-content/themes/baeldung/icon/logo.svg)](https://www.baeldung.com)
 
 [![Gradebook](https://cdn2.iconfinder.com/data/icons/education-green/64/010_gradebook-book-pen-pencil-64.png)](https://docs.google.com/spreadsheets/d/1wJ-Qn6AUKZwixeZl2sbel64LuONUvfos4B_UioJ9Irs/edit?usp=sharing)
+
+## Vorgeschlagene Literatur
+
+[Design Patterns: Elements of Reusable Object-Oriented Software](https://g.co/kgs/GjseFy)
