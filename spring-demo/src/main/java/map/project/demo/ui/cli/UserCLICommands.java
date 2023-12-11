@@ -1,4 +1,4 @@
-package map.project.demo.cli;
+package map.project.demo.ui.cli;
 
 import map.project.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,9 +38,9 @@ public class UserCLICommands {
         return userService.addBio(name, bio).toString();
     }
 
-    @ShellMethod(key = "add friend", value = "Add a friend")
+    @ShellMethod(key = "add follow", value = "Follow a user")
     public String addFriend(@ShellOption(value = { "name" }, help = "Name of the user") final String name,
             @ShellOption(value = { "friend" }, help = "Name of the friend") final String friend) {
-        return userService.addFriend(name, friend).toString();
+        return userService.addFollowing(name, friend).toString();
     }
 }

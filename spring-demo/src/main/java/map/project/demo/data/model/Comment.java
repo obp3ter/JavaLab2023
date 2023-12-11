@@ -11,8 +11,6 @@ import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 @Data
-@ToString(exclude = "post")
-@EqualsAndHashCode(exclude = "post")
 @Entity
 @Table(name = "comments")
 public class Comment {
@@ -21,6 +19,8 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     @ManyToOne
     private Post post;
 

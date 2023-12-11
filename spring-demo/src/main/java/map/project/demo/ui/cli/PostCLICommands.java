@@ -1,4 +1,4 @@
-package map.project.demo.cli;
+package map.project.demo.ui.cli;
 
 import map.project.demo.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +27,6 @@ public class PostCLICommands {
     public String addComment(@ShellOption(value = { "author" }, help = "Author of the comment") final String author,
             @ShellOption(value = { "content" }, help = "Content of the comment") final String content,
             @ShellOption(value = { "postid" }, help = "Post id of the comment") final Long postId) {
-        return postService.addCommentToPost(author, content, postId).toString();
+        return postService.addCommentToPost(postId, author, content).toString();
     }
 }

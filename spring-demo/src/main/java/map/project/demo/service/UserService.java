@@ -49,7 +49,10 @@ public class UserService {
     }
 
     public User findByName(String name) {
-        return userRepository.findByName(name).stream().findFirst().orElse(null);
+        return userRepository.findByName(name).stream()
+                .peek(User::getFollowing)
+                .peek(User::getFollowers)
+                .findFirst().orElse(null);
     }
 
     public User findByNameContaining(String name) {
@@ -60,11 +63,12 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User addFriend(String name, String friend) {
+    public User addFollowing(String name, String friend) {
         User user = userRepository.findByName(name).stream().findFirst().orElse(null);
         User friendUser = userRepository.findByName(friend).stream().findFirst().orElse(null);
         if (user != null && friendUser != null) {
-            user.getFriends().add(friendUser);
+            user.getFollowing().add(friendUser);
+            friendUser.getFollowers().add(user);
             return userRepository.save(user);
         } else {
             log.error("User not found");

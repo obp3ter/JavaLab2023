@@ -32,7 +32,7 @@ public class PostService {
         return postRepository.save(post);
     }
 
-    public Post addCommentToPost(String author, String content, Long postId) {
+    public Post addCommentToPost(Long postId, String author, String content) {
         Post post = postRepository.findById(postId).orElseThrow(()->new IllegalArgumentException("Post not found"));
             Comment comment = new Comment();
             comment.setAuthor(userService.findByName(author));
