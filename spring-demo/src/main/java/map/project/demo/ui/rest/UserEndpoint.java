@@ -17,31 +17,61 @@ public class UserEndpoint {
     @Autowired
     private UserService userService;
 
+    /**
+     * Lists all users
+     * @return the list of users
+     */
     @GetMapping()
     public List<User> listUsers() {
         return userService.findAll();
     }
 
+    /**
+     * Creates a new user
+     * @param request the request body
+     * @return the created user
+     */
     @PostMapping()
     public User addUser(@RequestBody UserDTO request) {
         return userService.save(request.getName());
     }
 
+    /**
+     * Finds a user by name
+     * @param name the name of the user
+     * @return the user
+     */
     @GetMapping("/{name}")
     public User findUser(@PathVariable String name) {
         return userService.findByName(name);
     }
 
+    /**
+     * Finds a user by name
+     * @param name the name of the user
+     * @return the user
+     */
     @GetMapping("/like/{name}")
     public User findUserLike(@PathVariable String name) {
         return userService.findByNameContaining(name);
     }
 
+    /**
+     * Adds a bio to a user
+     * @param request the request body
+     * @return the updated user
+     */
     @PostMapping("/bio")
     public User addBio(@RequestBody BioDTO request) {
         return userService.addBio(request.getName(), request.getBio());
     }
 
+    /**
+     * Adds a follow to a user
+     * @param name the name of the user
+     * @param friend the name of the friend
+     * @return the updated user
+     */
     @PostMapping("/follow")
     public User addFollow(@JsonParam String name, @JsonParam String friend) {
         return userService.addFollowing(name, friend);
